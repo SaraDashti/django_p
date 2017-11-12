@@ -1,17 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Document</title>
-</head>
-<body>
-	{% for item in post_items %}
-	<ul>
-		<a href="{% url 'detail' post_id=item.id %}"><li>{{item.title}}</li></a>
-		<li>{{item.content}}</li>
-		<li>{{item.id}}</li>
-	</ul>
-	{% endfor %}
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block heading %} list {% endblock heading %}
+
+{% block content %}
+
+	<div class="jumbotron">
+	  <h1 class="display-3">THESE ARE MY POSTS!</h1>
+	  
+	    <a class="btn btn-primary btn-lg" href="{% url 'more:create' %}" role="button">Create</a>
+	  </p>
+	</div>
+
+	<div class="row">
+   
+	{% for item in post_items %}
+		<div class="card col-xs-12 col-md-4" style="width: 20rem;">
+			{% if item.img %}
+			<img class="img-fluid" src="{{item.img.url}}" alt="Card image cap">
+			{% endif %}
+
+			<div class="card_body">
+				<h4 class="card_title">{{item.title}} <small>{{item.created| timesince}}</small></h4>
+				<p class="card-text">{{item.content|linebreaks|truncatechars:30}}</p>
+
+				<a href="{% url 'more:detail' post_id=item.id %}" class="btn btn-info">read more..</a>
+				<a href="{% url 'more:update' post_id=item.id %}" class="btn btn-warning">Update</a>
+				<a href="{% url 'more:delete' post_id=item.id %}" class="btn btn-danger">Delete</a>
+				
+			</div>
+		</div>	
+		
+	
+	{% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if post_items.has_previous %}
+            <a href="?page={{ post_items.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post_items.number }} of {{ post_items.paginator.num_pages }}.
+        </span>
+
+        {% if post_items.has_next %}
+            <a href="?page={{ post_items.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %}

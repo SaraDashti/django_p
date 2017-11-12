@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Post Create</title>
-</head>
-<body>
-	<h1>the post create page</h1>
+{% extends "base.html" %}
 
-	{{key}}
+{% block heading %} create {% endblock heading %}
 
-</body>
-</html>
+{% block content %}
+	
+	<form action="{% url 'more:create' %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" value="create">
+	</form>
+
+{% endblock content %}

@@ -1,16 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Doc</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-	<ul>
-		<li>{{item.title}}</li>
-		<li>{{item.content}}</li>
-		<li>{{item.id}}</li>
-	</ul>
+{% block heading %} detail {% endblock heading %}
 
-</body>
-</html>
+{% block content %}
+
+<div class="card">
+  <div class="card-body">
+   
+	<div class="alert alert-primary" role="alert" style="width: 80rem;">
+		<ul>
+			<li>{{item.title}}</li>
+			<li>{{item.content}}</li>
+			<li>{{item.id}}</li>
+		</ul>
+  
+	</div>
+
+
+	
+  </div>
+</div>
+
+	
+
+{% endblock content %}
