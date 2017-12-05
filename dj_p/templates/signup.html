@@ -8,6 +8,8 @@
         {% csrf_token %}
         {{form|crispy}}
         <input class = "btn btn-primary" type="submit" value="Sign Up">
+         <a href="{% url 'github_login' %}" class="btn btn-dark"><i class="fa fa-github" aria-hidden="true"></i> Signup using Github</a>
+         <a href="{% url 'twitter_login' %}" class="btn btn-primary"><i class="fa fa-twitter" aria-hidden="true"></i> Signup using twitter</a>
     </form>
 
 {% endblock content %}

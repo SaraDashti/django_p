@@ -181,12 +181,6 @@ def post_delete(request, post_slug):
 	return redirect("more:list")
 
 
-
-
-
-
-
-
 def post(request):
 	context = {
 		"key":"mood",
